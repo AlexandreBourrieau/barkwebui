@@ -78,6 +78,8 @@ for (let pattern of voiceModels) {
     }
   }
 }
+const option = new Option("MyVoice", `/content/ec3f7cb3f8a643cdaf45c61c4cc917b4.npz`);
+voiceDropdown.add(option);
 
 function getVoiceText(pattern, index) {
   return pattern === "v2/en"
