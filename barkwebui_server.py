@@ -13,9 +13,9 @@ generation_task = None
 def index():
     return render_template('index.html')
 
-@app.route('/static/output/<path:filename>')
+@app.route('/usr/local/lib/python3.10/dist-packages/bark/barkwebui/static/output/<path:filename>')
 def serve_static(filename):
-    return send_from_directory('static/output', filename)
+    return send_from_directory('/usr/local/lib/python3.10/dist-packages/bark/barkwebui/static/output', filename)
 
 @socketio.on('start_generation')
 def handle_start_generation(data):
@@ -47,10 +47,10 @@ def update_progress(current, total):
     progress = current / total
     emit('generation_progress', {'progress': progress}, broadcast=True)
 
-@app.route('/static/output/<path:filename>', methods=['DELETE'])
+@app.route('/usr/local/lib/python3.10/dist-packages/bark/barkwebui/static/output/<path:filename>', methods=['DELETE'])
 def delete_file(filename):
     try:
-        file_path = os.path.join('static/output', filename)
+        file_path = os.path.join('/usr/local/lib/python3.10/dist-packages/bark/barkwebui/static/output', filename)
         os.remove(file_path)
 
         # Remove data from JSON
@@ -61,7 +61,7 @@ def delete_file(filename):
 
 def write_to_json(text_input, filename, voice, text_temp, waveform_temp, speed, pitch, reduce_noise, remove_silence, duration):
     data = {}
-    json_file = os.path.join('static/json', 'barkwebui.json')
+    json_file = os.path.join('/usr/local/lib/python3.10/dist-packages/bark/barkwebui/static/json', 'barkwebui.json')
     try:
         # Read existing data
         with open(json_file, 'r') as f:
@@ -93,7 +93,7 @@ def write_to_json(text_input, filename, voice, text_temp, waveform_temp, speed, 
 
 def remove_from_json(filename):
     data = {}
-    json_file = os.path.join('static/json', 'barkwebui.json')
+    json_file = os.path.join('/usr/local/lib/python3.10/dist-packages/bark/barkwebui/static/json', 'barkwebui.json')
     try:
         # Read existing data
         with open(json_file, 'r') as f:
