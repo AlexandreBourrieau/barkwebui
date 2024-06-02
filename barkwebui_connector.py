@@ -249,7 +249,7 @@ def generate_voice(text_input, voice, progress_callback=None, text_temp=0.7, wav
         final_audio_final = np.int16(final_audio_float * 32767)
 
         output_filename = f"{uuid.uuid4().hex}.wav"
-        write_wav(os.path.join("static", "output", output_filename), sample_rate, final_audio_final)
+        write_wav(os.path.join("/usr/local/lib/python3.10/dist-packages/bark/barkwebui/static", "output", output_filename), sample_rate, final_audio_final)
 
     print(f"Audio generation completed: {output_filename}")
     return output_filename
